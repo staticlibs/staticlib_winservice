@@ -44,8 +44,8 @@ if ( NOT DEFINED CMAKE_LIBRARY_OUTPUT_DIRECTORY )
     set ( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR} )
 endif ( )
 if ( NOT DEFINED STATICLIB_TOOLCHAIN )
-    staticlib_httpclient_add_subdirectory ( ${CMAKE_CURRENT_LIST_DIR}/../staticlib_config )
-    staticlib_httpclient_add_subdirectory ( ${CMAKE_CURRENT_LIST_DIR}/../staticlib_utils )
+    staticlib_winservice_add_subdirectory ( ${CMAKE_CURRENT_LIST_DIR}/../staticlib_config )
+    staticlib_winservice_add_subdirectory ( ${CMAKE_CURRENT_LIST_DIR}/../staticlib_utils )
 endif ( )
 
 # deps
