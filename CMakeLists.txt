@@ -45,12 +45,12 @@ if ( NOT DEFINED CMAKE_LIBRARY_OUTPUT_DIRECTORY )
 endif ( )
 if ( NOT DEFINED STATICLIB_TOOLCHAIN )
     staticlib_httpclient_add_subdirectory ( ${CMAKE_CURRENT_LIST_DIR}/../staticlib_config )
-    staticlib_httpclient_add_subdirectory ( ${CMAKE_CURRENT_LIST_DIR}/../staticlib_pimpl )
+    staticlib_httpclient_add_subdirectory ( ${CMAKE_CURRENT_LIST_DIR}/../staticlib_utils )
 endif ( )
 
 # deps
 set ( ${PROJECT_NAME}_DEPS
-        staticlib_pimpl )
+        staticlib_utils )
 staticlib_winservice_pkg_check_modules ( ${PROJECT_NAME}_DEPS_PC REQUIRED ${PROJECT_NAME}_DEPS )
 
 # library
