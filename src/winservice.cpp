@@ -152,7 +152,7 @@ void set_service_status(DWORD status, DWORD error = 0) {
     st.dwWin32ExitCode = error;
     if (SERVICE_RUNNING == status || SERVICE_STOPPED == status) {
         st.dwCheckPoint = 0;
-    } else{
+    } else {
         st.dwCheckPoint += 1;
     }
     auto success = SetServiceStatus(static_ctx().get_status_handle(), std::addressof(st));
@@ -167,13 +167,11 @@ void start_service(DWORD pending, DWORD target) STATICLIB_NOEXCEPT{
         set_service_status(pending);
         static_ctx().start();
         set_service_status(target);
-    }
-    catch (const std::exception& e) {
+    } catch (const std::exception& e) {
         static_ctx().log(TRACEMSG(e.what() + "\nError starting service," +
                 " pending: [" + sc::to_string(pending) + "], target: [" + sc::to_string(target) + "]"));
         set_service_status(SERVICE_STOPPED, 1);
-    }
-    catch (...) {
+    } catch (...) {
         static_ctx().log(TRACEMSG("Error starting service," +
             " pending: [" + sc::to_string(pending) + "], target: [" + sc::to_string(target) + "]"));
         set_service_status(SERVICE_STOPPED, 2);
@@ -185,13 +183,11 @@ void stop_service(DWORD pending, DWORD target) STATICLIB_NOEXCEPT{
         set_service_status(pending);
         static_ctx().stop();
         set_service_status(target);
-    }
-    catch (const std::exception& e) {
+    } catch (const std::exception& e) {
         static_ctx().log(TRACEMSG(e.what() + "\nError stopping service," +
             " pending: [" + sc::to_string(pending) + "], target: [" + sc::to_string(target) + "]"));
         set_service_status(SERVICE_STOPPED, 1);
-    }
-    catch (...) {
+    } catch (...) {
         static_ctx().log(TRACEMSG("Error stopping service," +
             " pending: [" + sc::to_string(pending) + "], target: [" + sc::to_string(target) + "]"));
         set_service_status(SERVICE_STOPPED, 2);
@@ -263,9 +259,19 @@ void uninstall_service(const std::string& service_name) {
     if (nullptr == scm.get()) throw WindowsServiceException(TRACEMSG(
             "Cannot open SCM, error: [" + su::errcode_to_string(GetLastError()) + "]"));
     auto service = std::unique_ptr<SC_HANDLE__, ServiceHandleDeleter>(
-            OpenServiceW(scm.get(), su::widen(service_name).c_str(), DELETE), ServiceHandleDeleter());
+            OpenServiceW(scm.get(), su::widen(service_name).c_str(), SERVICE_QUERY_STATUS | DELETE), ServiceHandleDeleter());
     if (nullptr == service.get()) throw WindowsServiceException(TRACEMSG(
             "Cannot open service, name: [" + service_name + "], error: [" + su::errcode_to_string(GetLastError()) + "]"));
+    SERVICE_STATUS_PROCESS ssp;
+    DWORD len;
+    auto err_query = QueryServiceStatusEx(service.get(), SC_STATUS_PROCESS_INFO,
+            reinterpret_cast<BYTE*> (std::addressof(ssp)), sizeof(SERVICE_STATUS_PROCESS), std::addressof(len));
+    if (!err_query) throw WindowsServiceException(TRACEMSG(
+            "Error querying service status, name: [" + service_name + "]," +
+            " error: [" + su::errcode_to_string(GetLastError()) + "]"));
+    if (SERVICE_STOPPED != ssp.dwCurrentState) throw WindowsServiceException(TRACEMSG(
+            "Error uninstalling service, name: [" + service_name + "],"
+            " service must be stopped before the uninstallation"));
     auto success = DeleteService(service.get());
     if (!success) throw WindowsServiceException(TRACEMSG(
             "Error uninstalling service, name: [" + service_name + "]," +
