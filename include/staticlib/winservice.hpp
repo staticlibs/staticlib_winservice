@@ -55,6 +55,20 @@ void install_service(const std::string& service_name, const std::string& display
 void uninstall_service(const std::string& service_name);
 
 /**
+ * Starts specified service
+ *
+ * @param service_name service name
+ */
+void start_service(const std::string& service_name);
+
+/**
+* Sends 'SERVICE_CONTROL_STOP' signal to specified service
+*
+* @param service_name service name
+*/
+void stop_service(const std::string& service_name);
+
+/**
  * Entry point for the application called by Service Manager,
  * this call will block until the service will be stopped
  * 

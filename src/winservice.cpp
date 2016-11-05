@@ -278,6 +278,39 @@ void uninstall_service(const std::string& service_name) {
             " error: [" + su::errcode_to_string(GetLastError()) + "]"));
 }
 
+void start_service(const std::string& service_name) {
+    auto scm = std::unique_ptr<SC_HANDLE__, ServiceHandleDeleter>(
+        OpenSCManagerW(NULL, NULL, SC_MANAGER_CONNECT),
+        ServiceHandleDeleter());
+    if (nullptr == scm.get()) throw WindowsServiceException(TRACEMSG(
+        "Cannot open SCM, error: [" + su::errcode_to_string(GetLastError()) + "]"));
+    auto service = std::unique_ptr<SC_HANDLE__, ServiceHandleDeleter>(
+        OpenServiceW(scm.get(), su::widen(service_name).c_str(), SERVICE_START), ServiceHandleDeleter());
+    if (nullptr == service.get()) throw WindowsServiceException(TRACEMSG(
+        "Cannot open service, name: [" + service_name + "], error: [" + su::errcode_to_string(GetLastError()) + "]"));
+    auto success = StartService(service.get(), 0, nullptr);
+    if (!success) throw WindowsServiceException(TRACEMSG(
+            "Error starting service, name: [" + service_name + "]," +
+            " error: [" + su::errcode_to_string(GetLastError()) + "]"));
+}
+
+void stop_service(const std::string& service_name) {
+    auto scm = std::unique_ptr<SC_HANDLE__, ServiceHandleDeleter>(
+        OpenSCManagerW(NULL, NULL, SC_MANAGER_CONNECT),
+        ServiceHandleDeleter());
+    if (nullptr == scm.get()) throw WindowsServiceException(TRACEMSG(
+        "Cannot open SCM, error: [" + su::errcode_to_string(GetLastError()) + "]"));
+    auto service = std::unique_ptr<SC_HANDLE__, ServiceHandleDeleter>(
+        OpenServiceW(scm.get(), su::widen(service_name).c_str(), SERVICE_STOP), ServiceHandleDeleter());
+    if (nullptr == service.get()) throw WindowsServiceException(TRACEMSG(
+        "Cannot open service, name: [" + service_name + "], error: [" + su::errcode_to_string(GetLastError()) + "]"));
+    SERVICE_STATUS ss;
+    auto success = ControlService(service.get(), SERVICE_CONTROL_STOP, std::addressof(ss));
+    if (!success) throw WindowsServiceException(TRACEMSG(
+            "Error stopping service, name: [" + service_name + "]," +
+            " error: [" + su::errcode_to_string(GetLastError()) + "]"));
+}
+
 void start_service_and_wait(const std::string& service_name, std::function<void()> starter,
         std::function<void()> stopper, std::function<void(const std::string&)> logger) {
     set_static_context(service_name, std::move(starter), std::move(stopper), std::move(logger));
