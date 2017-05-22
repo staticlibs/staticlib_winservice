@@ -32,9 +32,9 @@
 
 const std::string logfile = "c:/tmp/winservice_test.log";
 
-void log(sl::tinydir::sink& fd, const std::string& msg) {
-    fd.write(msg.c_str(), msg.length());
-    fd.write("\n", 1);
+void log(sl::tinydir::file_sink& fd, const std::string& msg) {
+    fd.write({ msg.c_str(), msg.length() });
+    fd.write({ "\n", 1 });
 }
 
 int main(int argc, char* argv[]) {
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
     if (skip) return 0;
     // end note
     std::remove(logfile.c_str());
-    auto fd = sl::tinydir::sink(logfile, 'w');
+    auto fd = sl::tinydir::file_sink(logfile);
     try {
         if (1 == argc) {
             log(fd, "enter");
