@@ -15,16 +15,16 @@
  */
 
 /* 
- * File:   WindowsServiceException.hpp
+ * File:   winservice_exception.hpp
  * Author: alex
  *
  * Created on August 8, 2016, 2:48 PM
  */
 
-#ifndef STATICLIB_WINSERVICE_WINDOWSSERVICEEXCEPTION_HPP
-#define	STATICLIB_WINSERVICE_WINDOWSSERVICEEXCEPTION_HPP
+#ifndef STATICLIB_WINSERVICE_WINSERVICEEXCEPTION_HPP
+#define	STATICLIB_WINSERVICE_WINSERVICEEXCEPTION_HPP
 
-#include "staticlib/config.hpp"
+#include "staticlib/support/exception.hpp"
 
 namespace staticlib {
 namespace winservice {
@@ -32,25 +32,25 @@ namespace winservice {
 /**
  * Module specific exception
  */
-class WindowsServiceException : public staticlib::config::BaseException {
+class winservice_exception : public sl::support::exception {
 public:
     /**
      * Default constructor
      */
-    WindowsServiceException() = default;
+    winservice_exception() = default;
 
     /**
      * Constructor with message
      * 
      * @param msg error message
      */
-    WindowsServiceException(const std::string& msg) :
-    staticlib::config::BaseException(msg) { }
+    winservice_exception(const std::string& msg) :
+    sl::support::exception(msg) { }
 
 };
 
 } // namespace
 } 
 
-#endif	/* STATICLIB_WINSERVICE_WINDOWSSERVICEEXCEPTION_HPP */
+#endif	/* STATICLIB_WINSERVICE_WINSERVICEEXCEPTION_HPP */
 

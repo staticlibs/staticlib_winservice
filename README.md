@@ -12,16 +12,16 @@ Usage example
 
 Install current executable as a service:
 
-    staticlib::winservice::install_service("foo", "Foo Service Description", "LocalSystem");
+    sl::winservice::install_service("foo", "Foo Service Description", "LocalSystem");
 
 Uninstall service by name:
 
-    staticlib::winservice::uninstall_service("foo");
+    sl::winservice::uninstall_service("foo");
 
 Start application as a service when service for this executable is already installed and being run by
 Service Control Manager. This call will block until the service will be stopped:
 
-    staticlib::winservice::start_service_and_wait(
+    sl::winservice::start_service_and_wait(
             "foo", // service name
             [&]{ ... }, // start callback                
             [&]{ ... }, // stop callback
@@ -44,6 +44,7 @@ Visual Studio development command prompt
 (`C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\Shortcuts\VS2013 x86 Native Tools Command Prompt`):
 
     git clone https://github.com/staticlibs/staticlib_config.git
+    git clone https://github.com/staticlibs/staticlib_support.git
     git clone https://github.com/staticlibs/staticlib_utils.git
     git clone https://github.com/staticlibs/staticlib_winservice.git
     cd staticlib_winservice
@@ -63,6 +64,11 @@ This project is released under the [Apache License 2.0](http://www.apache.org/li
 
 Changelog
 ---------
+
+**2017-05-22**
+
+ * version 1.0.1
+ * deps update
 
 **2016-08-09**
 

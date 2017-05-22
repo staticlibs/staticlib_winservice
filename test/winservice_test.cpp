@@ -28,14 +28,11 @@
 #include <string>
 
 #include "staticlib/config/assert.hpp"
-#include "staticlib/utils.hpp"
-
-namespace su = staticlib::utils;
-namespace sw = staticlib::winservice;
+#include "staticlib/tinydir.hpp"
 
 const std::string logfile = "c:/tmp/winservice_test.log";
 
-void log(su::FileDescriptor& fd, const std::string& msg) {
+void log(sl::tinydir::sink& fd, const std::string& msg) {
     fd.write(msg.c_str(), msg.length());
     fd.write("\n", 1);
 }
@@ -46,11 +43,11 @@ int main(int argc, char* argv[]) {
     if (skip) return 0;
     // end note
     std::remove(logfile.c_str());
-    auto fd = su::FileDescriptor(logfile, 'w');
+    auto fd = sl::tinydir::sink(logfile, 'w');
     try {
         if (1 == argc) {
             log(fd, "enter");
-            sw::start_service_and_wait("foo",
+            sl::winservice::start_service_and_wait("foo",
                 [&fd]{
                     log(fd, "start");
                 },
@@ -71,9 +68,9 @@ int main(int argc, char* argv[]) {
         std::string arg = std::string(argv[1]);
         if ("-i" == arg) {
             // http://stackoverflow.com/q/31538050/314015
-            sw::install_service("foo", "foo_test", "LocalSystem");
+            sl::winservice::install_service("foo", "foo_test", "LocalSystem");
         } else if ("-u" == arg) {
-            sw::uninstall_service("foo");           
+            sl::winservice::uninstall_service("foo");           
         } else {
             std::string msg = "Invalid argument: [" + arg + "], use single argument: '-i' or '-u'";
             log(fd, msg);
