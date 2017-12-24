@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['windowsserviceexception_2ehpp',['WindowsServiceException.hpp',['../WindowsServiceException_8hpp.html',1,'']]],
-  ['winservice_2ehpp',['winservice.hpp',['../winservice_8hpp.html',1,'']]]
+  ['winservice_2ehpp',['winservice.hpp',['../winservice_8hpp.html',1,'']]],
+  ['winservice_5fexception_2ehpp',['winservice_exception.hpp',['../winservice__exception_8hpp.html',1,'']]]
 ];

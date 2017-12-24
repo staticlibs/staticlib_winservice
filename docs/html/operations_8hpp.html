@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>staticlib_winservice: staticlib/winservice/WindowsServiceException.hpp File Reference</title>
+<title>staticlib_winservice: staticlib/winservice/operations.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">staticlib_winservice
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
   </td>
  </tr>
@@ -85,30 +85,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">WindowsServiceException.hpp File Reference</div>  </div>
+<div class="title">operations.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;staticlib/config.hpp&quot;</code><br/>
+<div class="textblock"><code>#include &lt;functional&gt;</code><br/>
+<code>#include &lt;string&gt;</code><br/>
+<code>#include &quot;<a class="el" href="winservice__exception_8hpp_source.html">staticlib/winservice/winservice_exception.hpp</a>&quot;</code><br/>
 </div>
-<p><a href="WindowsServiceException_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="operations_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstaticlib_1_1winservice_1_1WindowsServiceException.html">staticlib::winservice::WindowsServiceException</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Module specific exception.  <a href="classstaticlib_1_1winservice_1_1WindowsServiceException.html#details">More...</a><br/></td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacestaticlib"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestaticlib.html">staticlib</a></td></tr>
 <tr class="memitem:namespacestaticlib_1_1winservice"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestaticlib_1_1winservice.html">staticlib::winservice</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a7c1fe662a0c64db843f3b4db1fa08691"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestaticlib_1_1winservice.html#a7c1fe662a0c64db843f3b4db1fa08691">staticlib::winservice::install_service</a> (const std::string &amp;service_name, const std::string &amp;display_name, const std::string &amp;account=&quot;NT AUTHORITY\\LocalService&quot;, const std::string &amp;password=&quot;&quot;, const std::string &amp;start_type=&quot;SERVICE_AUTO_START&quot;, const std::string &amp;dependencies=&quot;&quot;)</td></tr>
+<tr class="memdesc:a7c1fe662a0c64db843f3b4db1fa08691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Installs current executable as a Windows Service.  <a href="#a7c1fe662a0c64db843f3b4db1fa08691"></a><br/></td></tr>
+<tr class="memitem:a13ebdd0226c39771f03ded066a213e6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestaticlib_1_1winservice.html#a13ebdd0226c39771f03ded066a213e6c">staticlib::winservice::uninstall_service</a> (const std::string &amp;service_name)</td></tr>
+<tr class="memdesc:a13ebdd0226c39771f03ded066a213e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uninstalls Windows Service by name.  <a href="#a13ebdd0226c39771f03ded066a213e6c"></a><br/></td></tr>
+<tr class="memitem:ac79176e8c981f8e866cc8481c2ae4580"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestaticlib_1_1winservice.html#ac79176e8c981f8e866cc8481c2ae4580">staticlib::winservice::start_service</a> (const std::string &amp;service_name)</td></tr>
+<tr class="memdesc:ac79176e8c981f8e866cc8481c2ae4580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts specified service.  <a href="#ac79176e8c981f8e866cc8481c2ae4580"></a><br/></td></tr>
+<tr class="memitem:ac1f5f5a3a0ec1a89681fcfb52981d075"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestaticlib_1_1winservice.html#ac1f5f5a3a0ec1a89681fcfb52981d075">staticlib::winservice::stop_service</a> (const std::string &amp;service_name)</td></tr>
+<tr class="memdesc:ac1f5f5a3a0ec1a89681fcfb52981d075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends 'SERVICE_CONTROL_STOP' signal to specified service.  <a href="#ac1f5f5a3a0ec1a89681fcfb52981d075"></a><br/></td></tr>
+<tr class="memitem:a04ae99feeed66d56098eeea4733b8d63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestaticlib_1_1winservice.html#a04ae99feeed66d56098eeea4733b8d63">staticlib::winservice::start_service_and_wait</a> (const std::string &amp;service_name, std::function&lt; void()&gt; starter, std::function&lt; void()&gt; stopper, std::function&lt; void(const std::string &amp;)&gt; logger)</td></tr>
+<tr class="memdesc:a04ae99feeed66d56098eeea4733b8d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry point for the application called by Service Manager, this call will block until the service will be stopped.  <a href="#a04ae99feeed66d56098eeea4733b8d63"></a><br/></td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 10 2016 20:58:51 for staticlib_winservice by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Dec 24 2017 15:44:39 for staticlib_winservice by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
