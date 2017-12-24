@@ -1,6 +1,8 @@
 Windows Services integration library for Staticlibs
 ===================================================
 
+[![appveyor](https://ci.appveyor.com/api/projects/status/github/staticlibs/staticlib_winservice?svg=true)](https://ci.appveyor.com/project/staticlibs/staticlib-winservice)
+
 This project is a part of [Staticlibs](http://staticlibs.net/).
 
 This library provides a high-level wrapper for [Windows Services API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms685942%28v=vs.85%29.aspx).
@@ -28,7 +30,7 @@ Service Control Manager. This call will block until the service will be stopped:
             [&](const std::string& msg) { ... } // logger callback
     );
 
-Service arguments are currently not supported.
+Service arguments are currently not supported (config file may be used instead).
 
 How to build
 ------------
@@ -64,6 +66,11 @@ This project is released under the [Apache License 2.0](http://www.apache.org/li
 
 Changelog
 ---------
+
+**2017-12-24**
+
+ * version 1.0.2
+ * vs2017 support
 
 **2017-05-22**
 

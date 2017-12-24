@@ -22,7 +22,7 @@
  */
 
 #ifndef STATICLIB_WINSERVICE_OPERATIONS_HPP
-#define	STATICLIB_WINSERVICE_OPERATIONS_HPP
+#define STATICLIB_WINSERVICE_OPERATIONS_HPP
 
 #include <functional>
 #include <string>
@@ -83,4 +83,4 @@ void start_service_and_wait(const std::string& service_name, std::function<void(
 } // namespace
 }
 
-#endif	/* STATICLIB_WINSERVICE_OPERATIONS_HPP */
+#endif /* STATICLIB_WINSERVICE_OPERATIONS_HPP */

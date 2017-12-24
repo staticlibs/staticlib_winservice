@@ -22,12 +22,12 @@
  */
 
 #ifndef STATICLIB_WINSERVICE_HPP
-#define	STATICLIB_WINSERVICE_HPP
+#define STATICLIB_WINSERVICE_HPP
 
 #include "staticlib/config.hpp"
 
 #include "staticlib/winservice/operations.hpp"
 #include "staticlib/winservice/winservice_exception.hpp"
 
-#endif	/* STATICLIB_WINSERVICE_HPP */
+#endif /* STATICLIB_WINSERVICE_HPP */
 
