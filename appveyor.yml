@@ -31,6 +31,9 @@ install:
   - git clone https://github.com/staticlibs/staticlib_config.git
   - git clone https://github.com/staticlibs/staticlib_support.git
   - git clone https://github.com/staticlibs/staticlib_utils.git
+# test only
+  - git clone https://github.com/staticlibs/staticlib_io.git
+  - git clone --recursive https://github.com/staticlibs/staticlib_tinydir.git
 
 build: off
 
