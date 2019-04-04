@@ -27,8 +27,7 @@
 #include <memory>
 #include <mutex>
 
-#define NOMINMAX
-#include <windows.h>
+#include "staticlib/support/windows.hpp"
 
 #include "staticlib/config.hpp"
 #include "staticlib/support.hpp"
